@@ -1,34 +1,23 @@
 import React from 'react'
 import { mockGifs } from './mock-data/gifs.mock'
+import { CustomHeader } from './shared/components/CustomHeader'
+import { SearchBar } from './shared/components/SearchBar'
+import { PreviousSearches } from './gifs/PreviousSearches'
 
 export const GifsApp = () => {
     return (
         <>
-            <div className='content-center'>
-                <h1>Buscador de Gifs</h1>
-                <p>Descubre y comparte el gif perfecto</p>
-
-            </div>
+            {/* Header */}
+            <CustomHeader title='Buscador de gifs' description='Descubre y comparte el gif perfecto'></CustomHeader>
             {/* Search */}
-            <div className='search-container'>
-                <input type="text" placeholder='Buscar gifs' />
-                <button>Buscar</button>
-            </div>
+            <SearchBar />
             {/* Busquedas previas */}
-            <div className='previous-searches'>
-                <h2>Búsquedas previas</h2>
-                <ul className='previous-searches-list'>
-                    <li>Evangelion</li>
-                    <li>P5</li>
-                    <li>Nier</li>
-                    <li>Elden Ring</li>
-                </ul>
-            </div>
+           <PreviousSearches/>
             {/* Gifs */}
             <div className='gifs-container'>
 
                 {
-                    mockGifs.map((gif)=> (
+                    mockGifs.map((gif) => (
                         <div key={gif.id} className='gif-card'>
                             <img src={gif.url} alt={gif.title} />
                             <h3>{gif.title}</h3>
