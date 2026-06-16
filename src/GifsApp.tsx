@@ -1,7 +1,14 @@
 import React from 'react'
 
 export const GifsApp = () => {
-  return (
-    <div>GifsApp</div>
-  )
+    return (
+        <>
+            <div>
+                <h1>Buscador de Gifs</h1>
+                <p>Descubre y comparte el gif perfecto</p>
+
+            </div>
+        </>
+
+    )
 }
