@@ -1,13 +1,31 @@
-import React from 'react'
+import React, { useState, type KeyboardEvent } from 'react'
 
-interface Props{
-    placeholder:string;
+interface Props {
+    placeholder: string;
+    onQuery: (query: string) => void;
+};
+
+
+
+export const SearchBar = ({ placeholder, onQuery }: Props) => {
+    const [query, setQuery] = useState('');
+    const handleSearch = () => {
+        onQuery(query);
+        setQuery('');
+    }
+    const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+        handleSearch();
+    }
 }
-export const SearchBar = ({placeholder}:Props) => {
     return (
         <div className='search-container'>
-            <input type="text" placeholder={placeholder} />
-            <button>Buscar</button>
+            <input type="text" placeholder={placeholder}
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                onKeyDown={handleKeyDown}
+            />
+            <button onClick={handleSearch}>Buscar</button>
         </div>
     )
 }
