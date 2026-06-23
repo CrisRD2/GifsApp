@@ -7,19 +7,27 @@ import { GifsList } from './gifs/components/GifsList'
 
 export const GifsApp = () => {
     const [previousTerms, setPreviousTerms] = useState(['nier'])
-    const handleTermClick = (term: string) => { 
-        console.log({term});
+    const handleTermClick = (term: string) => {
+        console.log({ term });
     };
-    const handleSearch= (query:string)=>{
-        console.log(query);
-    };
+    const handleSearch = (query: string = '') => {
+
+        const term = query.trim().toLowerCase();
+        if (term.length === 0) return;
+
+        if (previousTerms.includes(term)) return;
+
+        // COn esto evitamos que nos de un previous con mas de 8 elementos
+        setPreviousTerms((prev) => [term, ...prev].slice(0, 8));
+
+    }
 
     return (
         <>
             {/* Header */}
             <CustomHeader title='Buscador de gifs' description='Descubre y comparte el gif perfecto'></CustomHeader>
             {/* Search */}
-            <SearchBar placeholder="Buscar gifs" onQuery={handleSearch}/>
+            <SearchBar placeholder="Buscar gifs" onQuery={handleSearch} />
             {/* Busquedas previas */}
             <PreviousSearches searches={previousTerms} onLabelClick={handleTermClick} />
             {/* Gifs */}
