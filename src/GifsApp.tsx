@@ -4,13 +4,14 @@ import { CustomHeader } from './shared/components/CustomHeader'
 import { SearchBar } from './shared/components/SearchBar'
 import { PreviousSearches } from './gifs/components/PreviousSearches'
 import { GifsList } from './gifs/components/GifsList'
+import { getGifByQuery } from './gifs/actions/get-gifs-by-query.action'
 
 export const GifsApp = () => {
     const [previousTerms, setPreviousTerms] = useState(['nier'])
     const handleTermClick = (term: string) => {
         console.log({ term });
     };
-    const handleSearch = (query: string = '') => {
+    const handleSearch = async(query: string = '') => {
 
         const term = query.trim().toLowerCase();
         if (term.length === 0) return;
@@ -20,6 +21,10 @@ export const GifsApp = () => {
         // COn esto evitamos que nos de un previous con mas de 8 elementos
         setPreviousTerms((prev) => [term, ...prev].slice(0, 8));
 
+      const gifs=  await getGifByQuery(query);
+      console.log({gifs});
+
+     document.body.appendChild.
     }
 
     return (
