@@ -24,7 +24,6 @@ export const GifsApp = () => {
       const gifs=  await getGifByQuery(query);
       console.log({gifs});
 
-     document.body.appendChild.
     }
 
     return (
