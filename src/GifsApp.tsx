@@ -5,9 +5,10 @@ import { SearchBar } from './shared/components/SearchBar'
 import { PreviousSearches } from './gifs/components/PreviousSearches'
 import { GifsList } from './gifs/components/GifsList'
 import { getGifByQuery } from './gifs/actions/get-gifs-by-query.action'
-
+import type { Gif } from './gifs/interfaces/gif.interface';
 export const GifsApp = () => {
-    const [previousTerms, setPreviousTerms] = useState(['nier'])
+    const [gifs, setGifs] = useState<Gif[]>([]);
+    const [previousTerms, setPreviousTerms] = useState<string[]>([])
     const handleTermClick = (term: string) => {
         console.log({ term });
     };
@@ -23,6 +24,7 @@ export const GifsApp = () => {
 
       const gifs=  await getGifByQuery(query);
       console.log({gifs});
+      setGifs(gifs);
 
     }
 
@@ -35,7 +37,7 @@ export const GifsApp = () => {
             {/* Busquedas previas */}
             <PreviousSearches searches={previousTerms} onLabelClick={handleTermClick} />
             {/* Gifs */}
-            <GifsList gifs={mockGifs} />
+            <GifsList gifs={gifs} />
         </>
 
     )
