@@ -10,21 +10,26 @@ export const GifsApp = () => {
     const [gifs, setGifs] = useState<Gif[]>([]);
     const [previousTerms, setPreviousTerms] = useState<string[]>([])
     const handleTermClick = (term: string) => {
-        console.log({ term });
+        handleSearch(term, true);
     };
-    const handleSearch = async(query: string = '') => {
+    const handleSearch = async (query: string = '', isFromHistory = false) => {
 
         const term = query.trim().toLowerCase();
         if (term.length === 0) return;
 
-        if (previousTerms.includes(term)) return;
+        if (previousTerms.includes(term) && !isFromHistory) return;
 
         // COn esto evitamos que nos de un previous con mas de 8 elementos
-        setPreviousTerms((prev) => [term, ...prev].slice(0, 8));
+        setPreviousTerms((prev) => {
+            const filtered = prev.filter(item => item !== term);
+            return [term, ...filtered].slice(0, 8);
+        });
 
-      const gifs=  await getGifByQuery(query);
-      console.log({gifs});
-      setGifs(gifs);
+
+
+        const gifs = await getGifByQuery(query);
+        console.log({ gifs });
+        setGifs(gifs);
 
     }
 
