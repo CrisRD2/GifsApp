@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
+import { useCounter } from '../hooks/useCounter'
 
 export const MyCounterApp = () => {
 
-    const [counter, setCounter] = useState(5);
-    const handleAdd = () => { setCounter(counter + 1)};
-    const handleSubtract = () => {setCounter(counter - 1) };
-    const handleReset = () => {setCounter(5)};
+    const {counter, handleAdd, handleSubtract, handleReset} = useCounter();
+    
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
