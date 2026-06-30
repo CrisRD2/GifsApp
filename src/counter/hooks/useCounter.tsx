@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 /* Usamos el use para indicar que es un hook */
 export const useCounter = (initialValue:number = 10) => {
           const [counter, setCounter] = useState(initialValue);
