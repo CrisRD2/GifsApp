@@ -8,11 +8,7 @@ export const CustomHeader = ({ title, description }: Props) => {
 
         <div className='content-center' >
             <h1>{title}</h1>
-            {
-                description && (
-                    < p > Descubre y comparte el gif perfecto </p>
-                )
-            }
+             {description && <p>{description}</p>}
 
 
         </div>
